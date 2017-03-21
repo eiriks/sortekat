@@ -64,7 +64,8 @@ sortekat er trent på data fra ulike forskninsprosjekter, blandt annet [Norsk Av
 Modellen er trent på 11943. Validering og søking etter hyperparametre er gjort med en normal 75/25 split.
 Helt til sist har jeg en 95/5 split slik at jeg maksimerer datsettet som brukes til trening, men fortsatt har et lite knippe (5%) out-of-sample data som kan gi en liten pekepinn på den ferdige modellen. Under finner du denne, den samsvarer fint med 75/25-splitten. (ta denne med en klype salt, som du ser er det veldig få tekster pr kategori her).
 
-####Accuracy:
+
+#### Accuracy:
 Tested on *only* 5% of the dataset (629 text)
 precision_score:        0.936446146838   
 recall:                 0.936406995231
