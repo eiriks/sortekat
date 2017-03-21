@@ -95,4 +95,5 @@ f1_macro:               0.920418777686
 - [Eirik Stavelin](http://www.uib.no/personer/Eirik.Stavelin)
 
 SorteKat er programvare som biprodukt fra forskning ved UiB.
-![SorteKat er programvare som biprodukt fra forskning ved UiB.](http://kapd.h.uib.no/profilmanual/images/img01_elementer/UiBmerke_200_200_svhv.gif){:style="float: left;margin: 15px;"}
+
+![SorteKat er programvare som biprodukt fra forskning ved UiB.](http://kapd.h.uib.no/profilmanual/images/img01_elementer/UiBmerke_200_200_svhv.gif)
