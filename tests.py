@@ -28,3 +28,7 @@ for p, t in zip(preds, texts):
     print(p,"==>", t)
 print()
 print("og", len(texts), "tok bare", time()-t1, "sekunder")
+
+print()
+print("Kategoriene:")
+print(clf.labels)

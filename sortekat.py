@@ -70,16 +70,15 @@ class SorteKat:
 
 if __name__ == '__main__':
     print("Kjører fra terminal")
-    from pympler import asizeof
 
     clf = SorteKat()
-    print(asizeof.asizeof(clf))
+
     print("Laste classifyer tar lang tid:", time()-start, 'sekunder')
 
     print()
     print('It took', time()-start, 'seconds.')
     t1 = time()
-    texts = ['Hardangervidda er midelertidig stengt mens brøytamanskap måker veien etter kraftig snøvær. Nedbør og sol. Solfaktor. Snø. Nedbør. Vind.',
+    texts = ['Hardangervidda er midlertidig stengt mens brøytemannskap måker veien etter kraftig snøvær.',
          "Statsminister Stoltenberg besøkte bedrifter på vestlandet.",
         "Brann vant kveldens kamp not Drammen.",
         "Arbeidsledighetstallene går ned viser nye tall fra SSB.",
