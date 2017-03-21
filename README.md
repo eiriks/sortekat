@@ -90,10 +90,9 @@ f1_macro:               0.920418777686
 
 
 
+<img src="https://camo.githubusercontent.com/2b256be5916cf4b09b5d82eba30fee79d0f49aa8/687474703a2f2f6b6170642e682e7569622e6e6f2f70726f66696c6d616e75616c2f696d616765732f696d6730315f656c656d656e7465722f5569426d65726b655f3230305f3230305f737668762e676966" alt="SorteKat er programvare som biprodukt fra forskning ved UiB." data-canonical-src="http://kapd.h.uib.no/profilmanual/images/img01_elementer/UiBmerke_200_200_svhv.gif" style="max-width:100%; float:left; margin-left:10px; margin-bottom:10px;">
 
 ### Kontakt
 - [Eirik Stavelin](http://www.uib.no/personer/Eirik.Stavelin)
 
 SorteKat er programvare som biprodukt fra forskning ved UiB.
-
-![SorteKat er programvare som biprodukt fra forskning ved UiB.](http://kapd.h.uib.no/profilmanual/images/img01_elementer/UiBmerke_200_200_svhv.gif)
