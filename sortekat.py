@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python3
 # coding: utf-8
 __author__ = 'eirikstavelin'
 __version__ = '0.0.1a'
@@ -7,31 +7,33 @@ from sklearn.externals import joblib  # for pickleing
 from sklearn.svm import LinearSVC
 from time import time
 from nltk.metrics.agreement import AnnotationTask
-from nltk.metrics import ConfusionMatrix
+
+#from nltk.metrics import ConfusionMatrix
 
 import sys
 start = time()
 
 # settings
-DATA_NAME = 'NAK10'  # "small_test_set"  # used in saved model
-DATA_PATH = 'models_tained_NAK11_nelson'
+DATA_NAME = 'l2LinearSVC_handcurated_synthetic_media_scientist_compTest'
+#DATA_NAME = 'NAK10'  # "small_test_set"  # used in saved model
+DATA_PATH = 'saved_models'
 
 
-class L1LinearSVC(LinearSVC):
-    # this is needed as it is not in the piclked data
-    ''' This is how it is done in the algo-tester:
-    http://scikit-learn.org/stable/auto_examples/document_classification_20newsgroups.html'''  # noqa
-    def fit(self, X, y):
-        # The smaller C, the stronger the regularization.
-        # The more regularization, the more sparsity.
-        self.transformer_ = LinearSVC(penalty="l1",
-                                      dual=False, tol=1e-3)
-        X = self.transformer_.fit_transform(X, y)
-        return LinearSVC.fit(self, X, y)
-
-    def predict(self, X):
-        X = self.transformer_.transform(X)
-        return LinearSVC.predict(self, X)
+# class L1LinearSVC(LinearSVC):
+#     # this is needed as it is not in the piclked data
+#     ''' This is how it is done in the algo-tester:
+#     http://scikit-learn.org/stable/auto_examples/document_classification_20newsgroups.html'''  # noqa
+#     def fit(self, X, y):
+#         # The smaller C, the stronger the regularization.
+#         # The more regularization, the more sparsity.
+#         self.transformer_ = LinearSVC(penalty="l1",
+#                                       dual=False, tol=1e-3)
+#         X = self.transformer_.fit_transform(X, y)
+#         return LinearSVC.fit(self, X, y)
+#
+#     def predict(self, X):
+#         X = self.transformer_.transform(X)
+#         return LinearSVC.predict(self, X)
 
 
 class SorteKat:
@@ -41,17 +43,18 @@ class SorteKat:
     all from the sklearn library.
     '''
 
-    def __init__(self, flavour='MultinomialNB'):
+    def __init__(self): # , flavour='MultinomialNB'
         self.labels = joblib.load('%s/%s_labels.pkl' % (DATA_PATH, DATA_NAME))
-        self.clf = joblib.load('%s/%s_%s.pkl' % (DATA_PATH, flavour, DATA_NAME))  # noqa
-        self.flavour = flavour
+        self.clf = joblib.load('%s/%s.pkl' % (DATA_PATH, DATA_NAME))  # noqa
+        # self.flavour = flavour
 
     def predict_one(self, text):
         return self.labels[self.clf.predict([text])]
 
     def predict_many(self, texts):
         '''Excpect a list of texts'''
-        return [self.labels[x] for x in self.clf.predict(texts)]
+        return self.labels[self.clf.predict(texts)]
+        #return [self.labels[x] for x in self.clf.predict(texts)]
         # print(self.clf.predict(texts))
 
     def predict_prob_test(self, text):
@@ -67,8 +70,30 @@ class SorteKat:
 
 if __name__ == '__main__':
     print("Kjører fra terminal")
-    CN = ClassifyNews("MultinomialNB")
-    print("Opprettet classifyer", time()-start, 'sekunder')
+    from pympler import asizeof
+
+    clf = SorteKat()
+    print(asizeof.asizeof(clf))
+    print("Laste classifyer tar lang tid:", time()-start, 'sekunder')
 
     print()
     print('It took', time()-start, 'seconds.')
+    t1 = time()
+    texts = ['Hardangervidda er midelertidig stengt mens brøytamanskap måker veien etter kraftig snøvær. Nedbør og sol. Solfaktor. Snø. Nedbør. Vind.',
+         "Statsminister Stoltenberg besøkte bedrifter på vestlandet.",
+        "Brann vant kveldens kamp not Drammen.",
+        "Arbeidsledighetstallene går ned viser nye tall fra SSB.",
+        "Ny forskning viser at profesorer forsker mer.",
+        "Den nye storfilmen fra ",
+        "– Eg kastar opp viss eg må gå på do der Over heile landet fortvilar bussjåførar over skitne toalett, manglande vatn og såpe eller ingen sanitære forhold i det heile."]
+    print("Men klassifisering er raskt")
+    pred = clf.predict_one(texts[0])
+    print("..."+texts[0]+"...")
+    print("er", pred[0], "og det tok bare", time()-t1, "sekunder")
+    t1 = time()
+    print()
+    preds = clf.predict_many(texts)
+    for p, t in zip(preds, texts):
+        print(p,"==>", t)
+    print()
+    print("og", len(texts), "tok bare", time()-t1, "sekunder")
